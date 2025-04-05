@@ -6,10 +6,16 @@ import { dirname } from 'path';
 import matter from 'gray-matter';
 import { Feed } from 'feed';
 import { marked } from 'marked';
-import { config } from '../src/lib/config.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+const BASE_URL = 'https://xxx.com';
+const AUTHOR = {
+  name: "Your Name",
+  email: "your.email@example.com",
+  link: BASE_URL
+};
 
 async function scanMarkdownFiles(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
@@ -30,7 +36,7 @@ async function scanMarkdownFiles(dir) {
       files.push({
         ...data,
         content: markdown,
-        url: `${config.site.url}/${urlPath}`,
+        url: `${BASE_URL}/${urlPath}`,
         date: new Date(data.date),
         updated: new Date(data.updated)
       });
@@ -41,7 +47,7 @@ async function scanMarkdownFiles(dir) {
 }
 
 async function generateRSSFeed() {
-  const contentDir = join(process.cwd(), 'src/content/blog/zh');
+  const contentDir = join(process.cwd(), 'src/content/blog');
   
   try {
     // Scan markdown files
@@ -52,22 +58,22 @@ async function generateRSSFeed() {
 
     // Create feed
     const feed = new Feed({
-      title: config.site.rss.title,
-      description: config.site.rss.description,
-      id: config.site.url,
-      link: config.site.url,
+      title: "Your Blog",
+      description: "Your Blog Description",
+      id: BASE_URL,
+      link: BASE_URL,
       language: "en",
-      image: config.site.image,
-      favicon: config.site.favicon.ico,
-      copyright: `All rights reserved ${new Date().getFullYear()}, ${config.author.name}`,
+      image: `${BASE_URL}/favicon.png`,
+      favicon: `${BASE_URL}/favicon.ico`,
+      copyright: `All rights reserved ${new Date().getFullYear()}, Your Name`,
       updated: new Date(),
       generator: "Feed for Node.js",
-      feedLinks: config.site.rss.feedLinks,
-      author: {
-        name: config.author.name,
-        email: config.author.email,
-        link: config.site.url
-      }
+      feedLinks: {
+        rss2: `${BASE_URL}/rss.xml`,
+        json: `${BASE_URL}/feed.json`,
+        atom: `${BASE_URL}/atom.xml`,
+      },
+      author: AUTHOR
     });
 
     // Add posts to feed
@@ -80,11 +86,7 @@ async function generateRSSFeed() {
         link: post.url,
         description: post.summary,
         content: htmlContent,
-        author: [{
-          name: config.author.name,
-          email: config.author.email,
-          link: config.site.url
-        }],
+        author: [AUTHOR],
         date: post.date,
         updated: post.updated,
       });
