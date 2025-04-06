@@ -17,8 +17,6 @@ export default function Home() {
         
         {/* 社交链接 */}
         <div className="flex space-x-2 text-gray-600">
-          <Link href={config.site.rss.feedLinks.rss2} className="underline underline-offset-4">RSS订阅</Link>
-          <span>·</span>
           <Link href={config.social.buyMeACoffee} className="underline underline-offset-4">赞赏</Link>
           <span>·</span>
           <Link href={config.social.x} className="underline underline-offset-4">X</Link>
