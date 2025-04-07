@@ -1,12 +1,12 @@
 export const config = {
   site: {
-    title: "Nextjs Blog Template",
-    name: "Nextjs Blog Template",
-    description: "Nextjs Blog Template",
-    keywords: ["Nextjs Blog Template", "AI", "Full Stack Developer"],
-    url: "https://xxx.com",
-    baseUrl: "https://xxx.com",
-    image: "https://xxx.com/og-image.png",
+    title: "littletiger blog",
+    name: "littletiger",
+    description: "no matter what,zhe future can be changed",
+    keywords: ["littletiger", "blog"],
+    url: "https://19920601.xyz",
+    baseUrl: "https://19920601.xyz",
+    image: "https://19920601.xyz/og-image.png",
     favicon: {
       ico: "/favicon.ico",
       png: "/favicon.png",
@@ -25,12 +25,12 @@ export const config = {
     },
   },
   author: {
-    name: "Your Name",
-    email: "your.email@example.com",
+    name: "littletiger",
+    email: "910264876@qq.com",
     bio: "这是一个 Nextjs 博客模板",
   },
   social: {
-    github: "https://github.com/xxx",
+    github: "https://github.com/xzy0601",
     x: "https://x.com/xxx",
     xiaohongshu: "https://www.xiaohongshu.com/user/profile/xxx",
     wechat: "https://storage.xxx.com/images/wechat-official-account.png",
@@ -50,7 +50,7 @@ export const config = {
     ],
   },
   seo: {
-    metadataBase: new URL("https://xxx.com"),
+    metadataBase: new URL("https://19920601.xyz"),
     alternates: {
       canonical: './',
     },
